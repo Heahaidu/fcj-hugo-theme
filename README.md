@@ -2,6 +2,11 @@
 
 [![Hugo](https://img.shields.io/badge/hugo-0.16-blue.svg)](https://gohugo.io) ![Build with Hugo](https://github.com/alex-shpak/hugo-book/workflows/Build%20with%20Hugo/badge.svg)
 
+<div style="display:flex; gap:10px;">
+  <img src="static/images/dark-theme.jpeg" style="width:50%;" />
+  <img src="static/images/light-theme.jpeg" style="width:50%;" />
+</div>
+
 ## Installation
 
 Navigate to your hugo project root and run:
