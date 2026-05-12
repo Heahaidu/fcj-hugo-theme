@@ -322,7 +322,7 @@ select[multiple=multiple]:focus {
     bottom: 0;
     left: 0;
     font-size: 15px;
-    border-right: 1px solid var(--border-color);
+    border-right: 3px double var(--border-color);
 }
 
 #sidebar a {
@@ -521,9 +521,8 @@ select[multiple=multiple]:focus {
 
 #body {
     position: relative;
-    margin-left: 301px;
+    margin-left: 300px;
     min-height: 100%;
-    border-left: 1px solid var(--border-color);
 }
 
 #body img,
