@@ -1,0 +1,16 @@
+<div class="searchbox-content">
+    <label for="search-by"><img class="logo-dark" src="/images/search-1.svg" width="18" height="18"/><img class="logo-light" src="/images/search-0.svg" width="18" height="18"/></label>
+    <input data-search-input id="search-by" type="search" placeholder="{{T "Search-placeholder"}}">
+    <span data-search-clear=""><img class="logo-dark" src="/images/multiply-1.png" width="18" height="18"><img class="logo-light" src="/images/multiply-0.png" width="18" height="18"></span>
+</div>
+{{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+<script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script type="text/javascript">
+    {{ if gt (len .Site.Languages) 1 }}
+        var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+    {{ else }}
+        var baseurl = "{{.Site.BaseURL}}";
+    {{ end }}
+</script>
+<script type="text/javascript" src="{{"js/search.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>

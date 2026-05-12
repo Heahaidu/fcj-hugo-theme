@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8"> <meta name="description" content="">
+<meta name="author" content="nguyenhaiduong20004@gmail.com">
+ <link rel="icon" href="/images/favicon-16x16.png" type="image/png">
+ 
+  <title>404 Page not found</title>
+
+   
+    <link href="/css/nucleus.css?1778603447" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1778603447" rel="stylesheet">
+    <link href="/css/hybrid.css?1778603447" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1778603447" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1778603447" rel="stylesheet">
+    <link href="/css/theme.css?1778603447" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1778603447" rel="stylesheet">
+    
+      <link href="/css/theme-Workshop.css?1778603447" rel="stylesheet">
+    
+<style>
+    :root #header + #content > #left > #rlblock_left {
+      display: none !important;
+    }
+
+    p,
+    li,
+    ul {
+      text-align: center
+    }
+
+    ul {
+      list-style-type: none;
+    }
+</style>
+
+<style>
+    .theme-toggle {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 9999;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: var(--button-day-light-bg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        background: var(button-day-light-bg-hover);
+    }
+
+    .theme-toggle svg {
+        width: 16px;
+        height: 16px;
+        transition: fill 0.3s ease;
+    }
+
+    [data-theme="light"] .icon-moon {
+        display: block;
+    }
+
+    [data-theme="light"] .icon-sun {
+        display: none;
+    }
+
+    [data-theme="dark"] .icon-moon {
+        display: none;
+    }
+
+    [data-theme="dark"] .icon-sun {
+        display: block;
+    }
+</style>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000" stroke="#000"
+        stroke-width="2" fill="none">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+</button>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme") || "dark";
+        const next = current === "light" ? "dark" : "light";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        updateLogo(next);
+    }
+
+    function updateLogo(theme) {
+        const light = document.querySelector(".logo-light");
+        const dark = document.querySelector(".logo-dark");
+        if (!light || !dark) return;
+        if (theme === "dark") {
+            light.style.display = "none";
+            dark.style.display = "block";
+        } else {
+            light.style.display = "block";
+            dark.style.display = "none";
+        }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    (function () {
+        const orig = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function (type, fn, options) {
+            
+            if (type === 'touchmove') {
+                if (typeof options === 'object') options.passive = true;
+                else options = { passive: true, capture: options || false };
+            }
+            return orig.call(this, type, fn, options);
+        };
+    })();
+
+</script>
+</head>
+
+  <body class="" data-url="/">
+
+    <section id="body" style="margin-left:0px;">
+      <div id="overlay"></div>
+      <div id="chapter">
+        <div id="body-inner">
+          <h1>Error</h1>
+          <p>
+          </p>
+          <p>Woops. Looks like this page doesn&#39;t exist ¯\_(ツ)_/¯.</p>
+          <p></p>
+          <p><a href='/vi/'>Go to homepage</a></p>
+          <p><img src='/images/404.png' style="width:50%" alt="Page not found!"></p>
+        </div>
+      </div>
+
+    </section>
+  </body>
+
+</html>

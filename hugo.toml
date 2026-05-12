@@ -1,0 +1,64 @@
+relativeURLs = false
+canonifyURLs = false
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[params]
+  themeVariant = "Workshop"
+  # Git hub repo link
+  editURL = ""
+  description = ""
+  author = "nguyenhaiduong20004@gmail.com"
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+
+  lastUpdated = "09-01-2026"
+  
+  [[params.members]]
+    name = "Nguyễn Hải Dương"
+    url = ""
+  
+  [[params.members]]
+    name = "Lư Hiếu Trung"
+    url = ""
+  
+  [[params.members]]
+    name = "Chương Nguyên Trương"
+    url = ""
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+defaultContentLanguage = "vi"
+defaultContentLanguageInSubdir = false
+disableDefaultLanguageRedirect = false
+
+[languages]
+  [languages.vi]
+  title = "Workshop"
+  weight = 0
+  languageName = "Tiếng Việt"
+  contentDir = "content/vi" 
+
+  [[languages.vi.menu.shortcuts]]
+  name = "<i class='fab fa-facebook'></i> AWS Study Group"
+  identifier = "AWS Study Group FB"
+  url = "https://www.facebook.com/groups/awsstudygroupfcj/"
+  weight = 20
+
+  [languages.en]
+  title = "Workshop"
+  weight = 0
+  languageName = "English"
+  contentDir = "content/en" 
+
+  [[languages.en.menu.shortcuts]]
+  name = "<i class='fab fa-facebook'></i> AWS Study Group"
+  identifier = "AWS Study Group FB"
+  url = "https://www.facebook.com/groups/awsstudygroupfcj/"
+  weight = 20

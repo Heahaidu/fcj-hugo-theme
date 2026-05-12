@@ -1,0 +1,2711 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.1">
+    <meta name="description" content="">
+<meta name="author" content="nguyenhaiduong20004@gmail.com">
+
+    <link rel="icon" href="/images/favicon-16x16.png" type="image/png">
+
+    <title>Các giai đoạn triển khai :: Workshop</title>
+
+    
+    <link href="/css/nucleus.css?1778603254" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1778603254" rel="stylesheet">
+    <link href="/css/hybrid.css?1778603254" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1778603254" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1778603254" rel="stylesheet">
+    <link href="/css/auto-complete.css?1778603254" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1778603254" rel="stylesheet">
+    <link href="/css/theme.css?1778603254" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1778603254" rel="stylesheet">
+    
+    <link href="/css/theme-Workshop.css?1778603254" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1778603254"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+<style>
+    .theme-toggle {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 9999;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: var(--button-day-light-bg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        background: var(button-day-light-bg-hover);
+    }
+
+    .theme-toggle svg {
+        width: 16px;
+        height: 16px;
+        transition: fill 0.3s ease;
+    }
+
+    [data-theme="light"] .icon-moon {
+        display: block;
+    }
+
+    [data-theme="light"] .icon-sun {
+        display: none;
+    }
+
+    [data-theme="dark"] .icon-moon {
+        display: none;
+    }
+
+    [data-theme="dark"] .icon-sun {
+        display: block;
+    }
+</style>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000" stroke="#000"
+        stroke-width="2" fill="none">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+</button>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme") || "dark";
+        const next = current === "light" ? "dark" : "light";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        updateLogo(next);
+    }
+
+    function updateLogo(theme) {
+        const light = document.querySelector(".logo-light");
+        const dark = document.querySelector(".logo-dark");
+        if (!light || !dark) return;
+        if (theme === "dark") {
+            light.style.display = "none";
+            dark.style.display = "block";
+        } else {
+            light.style.display = "block";
+            dark.style.display = "none";
+        }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    (function () {
+        const orig = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function (type, fn, options) {
+            
+            if (type === 'touchmove') {
+                if (typeof options === 'object') options.passive = true;
+                else options = { passive: true, capture: options || false };
+            }
+            return orig.call(this, type, fn, options);
+        };
+    })();
+
+</script>
+  </head>
+  <body class="" data-url="/vi/2-proposal/3-technical-implementation/3.1-implementation-phases/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+  
+  
+  <div id="header-wrapper">
+    <div id="header">
+      <div>
+  <a id="logo" href="/">
+    <img class="logo-dark" src="/images/logo-1.png" width="70%">
+    <img class="logo-light" src="/images/logo-0.png" width="70%">
+  </a>
+</div>
+    </div>
+  </div>
+  <div class="searchbox">
+    
+    <div class="searchbox-content">
+    <label for="search-by"><img class="logo-dark" src="/images/search-1.svg" width="18" height="18"/><img class="logo-light" src="/images/search-0.svg" width="18" height="18"/></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><img class="logo-dark" src="/images/multiply-1.png" width="18" height="18"><img class="logo-light" src="/images/multiply-0.png" width="18" height="18"></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1778603254"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1778603254"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1778603254"></script>
+    
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+
+      
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/" title="Nhật ký công việc" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/">
+    <b> 1. </b>Nhật ký công việc
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/1/" title="Worklog tuần 1" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/1/">
+    <b> 1.1 </b>Worklog tuần 1
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/2/" title="Worklog tuần 2" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/2/">
+    <b> 1.2 </b>Worklog tuần 2
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/3/" title="Worklog tuần 3" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/3/">
+    <b> 1.3 </b>Worklog tuần 3
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/4/" title="Worklog tuần 4" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/4/">
+    <b> 1.4 </b>Worklog tuần 4
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/5/" title="Worklog tuần 5" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/5/">
+    <b> 1.5 </b>Worklog tuần 5
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/6/" title="Worklog tuần 6" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/6/">
+    <b> 1.6 </b>Worklog tuần 6
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/7/" title="Worklog tuần 7" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/7/">
+    <b> 1.7 </b>Worklog tuần 7
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/8/" title="Worklog tuần 8" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/8/">
+    <b> 1.8 </b>Worklog tuần 8
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/9/" title="Worklog tuần 9" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/9/">
+    <b> 1.9 </b>Worklog tuần 9
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/10/" title="Worklog tuần 10" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/10/">
+    <b> 1.10 </b>Worklog tuần 10
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/11/" title="Worklog tuần 11" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/11/">
+    <b> 1.11 </b>Worklog tuần 11
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/1-worklog/12/" title="Worklog tuần 12" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/1-worklog/12/">
+    <b> 1.12 </b>Worklog tuần 12
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/" title="Project proposal" class="dd-item 
+        parent
+        
+        
+        ">
+  <a href="/vi/2-proposal/">
+    <b> 2. </b>Project proposal
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/1-problem-statement/" title="Mô tả vấn đề" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/1-problem-statement/">
+     <b> 1. </b> Mô tả vấn đề
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/2-solution-architect/" title="Kiến trúc giải pháp" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/2-solution-architect/">
+     <b> 2. </b> Kiến trúc giải pháp
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/3-technical-implementation/" title="Triển khai kĩ thuật" class="dd-item 
+        parent
+        
+        
+        ">
+  <a href="/vi/2-proposal/3-technical-implementation/">
+     <b> 3. </b> Triển khai kĩ thuật
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/3-technical-implementation/3.1-implementation-phases/" title="Các giai đoạn triển khai" class="dd-item 
+        
+        active
+        
+        ">
+  <a href="/vi/2-proposal/3-technical-implementation/3.1-implementation-phases/">
+     <b> 3.1 </b> Các giai đoạn triển khai
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/3-technical-implementation/3.2-technical-requirements/" title="Yêu cầu kĩ thuật" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/3-technical-implementation/3.2-technical-requirements/">
+     <b> 3.2 </b> Yêu cầu kĩ thuật
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/3-technical-implementation/3.3-component-design/" title="Thành phần thiết kế" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/3-technical-implementation/3.3-component-design/">
+     <b> 3.3 </b> Thành phần thiết kế
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/3-technical-implementation/3.4-security-architecture/" title="Kiến trúc bảo mật" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/3-technical-implementation/3.4-security-architecture/">
+     <b> 3.4 </b> Kiến trúc bảo mật
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/3-technical-implementation/3.5-scakability-design/" title="Khả năng mở rộng" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/3-technical-implementation/3.5-scakability-design/">
+     <b> 3.5 </b> Khả năng mở rộng
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/4-timeline-milestones/" title="Lịch trình &amp; Các mốc thời gian" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/4-timeline-milestones/">
+     <b> 4. </b> Lịch trình &amp; Các mốc thời gian
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/5-budget-estimation/" title="Dự toán ngân sách" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/5-budget-estimation/">
+     <b> 5. </b> Dự toán ngân sách
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/6-risk-assessment/" title="Đánh giá rủi ro" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/6-risk-assessment/">
+     <b> 6. </b> Đánh giá rủi ro
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/2-proposal/7-expected-outcomes/" title="Kết quả mong đợi" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/2-proposal/7-expected-outcomes/">
+     <b> 7. </b> Kết quả mong đợi
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/3-translate-blog/" title="Các bài blogs đã dịch" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/3-translate-blog/">
+    <b> 3. </b>Các bài blogs đã dịch
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/3-translate-blog/3.1/" title="Blog 1" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/3-translate-blog/3.1/">
+    <b> 3.1 </b>Blog 1
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/4-events/" title="Các events đã tham gia" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/4-events/">
+    <b> 4. </b>Các events đã tham gia
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/4-events/1/" title="Event 1" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/4-events/1/">
+     <b> 4.1 </b> Event 1
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/" title="Workshop" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/">
+    <b> 5. </b>Workshop
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/5.1-about/" title="Giới thiệu" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/5.1-about/">
+    <b> 5.1 </b>Giới thiệu
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/5.2-step/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/5.2-step/">
+    <b> 5.2 </b>Các bước chuẩn bị
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/5.3-be-https/" title="HTTPS đối với Backend và SPA cho Frontend" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/5.3-be-https/">
+    <b> 5.3 </b>HTTPS đối với Backend và SPA cho Frontend
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/5.4-clear-resource/" title="Kiểm tra kết quả" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/5.4-clear-resource/">
+    <b> 5.4 </b>Kiểm tra kết quả
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/5.5-video/" title="Video triển khai" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/5.5-video/">
+    <b> 5.5 </b>Video triển khai
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/vi/5-workshop/5.6-clear-resource/" title="Dọn dẹp tài nguyên" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/5-workshop/5.6-clear-resource/">
+    <b> 5.6 </b>Dọn dẹp tài nguyên
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/6-self-rating/" title="Tự đánh giá" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/6-self-rating/">
+    <b> 6. </b>Tự đánh giá
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/vi/7-feedback/" title="Chia sẻ, đóng góp ý kiến" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/vi/7-feedback/">
+    <b> 7. </b>Chia sẻ, đóng góp ý kiến
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+      
+      
+    </ul>
+
+    
+    
+    <section id="shortcuts">
+      <h3>More</h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"><i class='fab fa-facebook'></i> AWS Study Group</a>
+        </li>
+        
+      </ul>
+    </section>
+    
+
+    
+    <section id="prefooter">
+      <hr class="hr-line"/>
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <option id="vi" value="http://localhost:1313/vi/2-proposal/3-technical-implementation/3.1-implementation-phases/" selected>Tiếng Việt</option>
+                
+                
+                
+                
+              </select>
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="255px" height="255px"
+                viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+        
+
+        
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+        <b> Workshop</b> <br>
+       <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+        <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+       <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+        
+   </left>
+   <left>
+       <br>
+       <br>
+           <b> Last Updated </b> <br>
+           <i><font color=orange>09-01-2026</font></i>
+       </left>
+       <left>
+           <br>
+           <br>
+               <b> Team </b> <br>
+              
+               <i> <a href=""  style="color:orange">Nguyễn Hải Dương  </a> <br>
+                   <a href=""  style="color:orange">Lư Hiếu Trung </a> <br>
+                   <a href=""  style="color:orange">Chương Nguyên Trương </a>
+                  
+           </i>
+           </left>
+   
+   <script async defer src="https://buttons.github.io/buttons.js"></script>
+   
+    </section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><img class="logo-dark" src="/images/list-1.png" width="16" height="16"/><img class="logo-light" src="/images/list-0.png" width="16" height="16"/></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Báo cáo thực tập</a> / <a href='/vi/2-proposal/'>Project proposal</a> / <a href='/vi/2-proposal/3-technical-implementation/'>Triển khai kĩ thuật</a> / Các giai đoạn triển khai
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#giai-đoạn-1-phát-triển-cục-bộ">Giai đoạn 1: Phát triển cục bộ</a></li>
+        <li><a href="#giai-đoạn-2-tích-hợp-hệ-thống">Giai đoạn 2: Tích hợp hệ thống</a></li>
+        <li><a href="#giai-đoạn-3-triển-khai-thủ-công-lên-aws">Giai đoạn 3: Triển khai thủ công lên AWS</a></li>
+        <li><a href="#giai-đoạn-4-tự-động-hóa-triển-khai-hạ-tầng">Giai đoạn 4: Tự động hóa triển khai hạ tầng</a></li>
+        <li><a href="#tổng-quan">Tổng quan</a></li>
+        <li><a href="#giai-đoạn-5-cicd-pipeline-tự-động-hóa-build-và-triển-khai">Giai đoạn 5: CI/CD Pipeline (Tự động hóa build và triển khai)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Các giai đoạn triển khai
+            </h1>
+          
+
+        
+
+
+
+	<p>Quá trình triển khai hệ thống được chia thành các giai đoạn rõ ràng nhằm đảm bảo tính đồng bộ và giảm rủi ro trong quá trình phát triển:</p>
+<h3 id="giai-đoạn-1-phát-triển-cục-bộ">Giai đoạn 1: Phát triển cục bộ</h3>
+<p>Hệ thống gồm bốn microservices:</p>
+<ul>
+<li>User Service</li>
+<li>AI Chat Service</li>
+<li>Notification Service</li>
+<li>Event Service</li>
+</ul>
+<p>Mỗi service được phát triển và chạy độc lập trên môi trường local.<br>
+Mỗi service có Dockerfile và cấu hình riêng.</p>
+<p>Các service được kiểm tra logic nghiệp vụ và API độc lập.<br>
+Frontend kết nối thử nghiệm với từng service trong môi trường local.</p>
+<p>Cấu trúc microservice có 4 service tương ứng với 4 docker image</p>
+<!-- - Các file GitHub Actions workflow cho 4 service:
+  - [file cấu hình chatbot-service](https://github.com/Heahaidu/interest-project/blob/main/.github/workflows/deploy-chatbot-service.yml)
+  - [file cấu hình user-service](https://github.com/Heahaidu/interest-project/blob/main/.github/workflows/deploy-user-service.yml)
+  - [file cấu hình event-service](https://github.com/Heahaidu/interest-project/blob/main/.github/workflows/deploy-event-service.yml)
+  - [file cấu hình notification-service](https://github.com/Heahaidu/interest-project/blob/main/.github/workflows/deploy-notification-service.yml) -->
+<!-- > [!INFO]
+> Mục đích của file GitHub Actions workflow là **tự động build**, _push_ **Docker image** và _deploy_ các **service** lên `AWS ECS` mỗi khi push code
+
+- File GitHub Actions workflow cầu hình frontend: [file cấu hình web (front-end)](https://github.com/Heahaidu/interest-project/blob/main/.github/workflows/deploy-web-app.yml)
+
+> [!INFO]
+> Mục đích của file GitHub Actions workflow là **tự động build**, _push_ **Docker image** và _deploy_ **front-end lên static** lên `AWS S3` +  `CloudFront` mỗi khi push code -->
+<h3 id="giai-đoạn-2-tích-hợp-hệ-thống">Giai đoạn 2: Tích hợp hệ thống</h3>
+<p>Toàn bộ backend services được chạy đồng thời.<br>
+Frontend kết nối với các API backend dùng chung.</p>
+<p>Luồng nghiệp vụ chính được kiểm tra ở mức hệ thống.<br>
+Giai đoạn này tập trung phát hiện lỗi tích hợp và phụ thuộc giữa các service.</p>
+<h3 id="giai-đoạn-3-triển-khai-thủ-công-lên-aws">Giai đoạn 3: Triển khai thủ công lên AWS</h3>
+<p>Các service backend được container hóa bằng Docker.<br>
+Docker image được push lên Amazon ECR.</p>
+<h4 id="build--push-docker-image-lên-ecr">Build &amp; push Docker image lên ECR</h4>
+<p><strong>Bước 1:</strong> AWS CLI lấy authorization token tạm thời từ ECR</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws ecr get-login-password --region <span style="color:#f92672">{</span>Region<span style="color:#f92672">}</span> | docker login --username AWS --password-stdin <span style="color:#f92672">{</span>AccountID<span style="color:#f92672">}</span>.dkr.ecr.<span style="color:#f92672">{</span>Region<span style="color:#f92672">}</span>.amazonaws.com  
+</span></span></code></pre></div><blockquote>
+<p>[!GHI CHÚ] <br>
+Thay đổi <em>{Region}</em> và <em>{AccountID}</em> lần lượt thành vùng mà bạn tạo ECR và ID tài khoản AWS đang triển khai</p>
+</blockquote>
+<p><strong>Bước 2:</strong> Đóng gói service và đẩy ECR</p>
+<p>Đoạn script dưới đây sẽ tự dụng build, gán tag và đẩy image lên ECR tương ứng.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>AWS_ACCOUNT_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws sts get-caller-identity --query Account --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>service_name<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker build -t $service_name .
+</span></span><span style="display:flex;"><span>docker tag $service_name $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$service_name
+</span></span><span style="display:flex;"><span>docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$service_name
+</span></span></code></pre></div><blockquote>
+<p>[!LƯU Ý]<br>
+Trên máy triển khai phải có AWS CLI và đã đăng nhập tài khoản có ít nhất đủ quyền thao tác với ECR.  <br>
+Phải tạo trước các ECR có cùng tên với service trước khi đóng gói và đẩy lên.</p>
+</blockquote>
+<h3 id="giai-đoạn-4-tự-động-hóa-triển-khai-hạ-tầng">Giai đoạn 4: Tự động hóa triển khai hạ tầng</h3>
+<p>Toàn bộ hạ tầng được mô tả bằng AWS CloudFormation.  <br>
+Quy trình triển khai được chuẩn hóa và tự động hóa.</p>
+<p>CloudFormation chịu trách nhiệm tạo và cấu hình:</p>
+<ul>
+<li>Network và security</li>
+<li>ECS cluster và services</li>
+<li>RDS databases</li>
+<li>API Gateway và ALB</li>
+<li>CloudFront và S3</li>
+</ul>
+<p>Giai đoạn này loại bỏ cấu hình thủ công và giảm rủi ro triển khai.</p>
+<p><a href="/5/infra.json">Template CloudFormation</a></p>
+<blockquote>
+<p>Để xem toàn bộ quá quy trình triển khai bạn có thể xem qua tại <a href="/vi/5-workshop/">Workshop</a></p>
+</blockquote>
+<hr>
+<p>🎬 <strong>CloudFormation Demo Video</strong></p>
+<iframe width="100%" height="400"
+  src="https://www.youtube.com/embed/7qCpdv-Eq_k?si=KrOnWcZW5hHqHsqr"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+<hr>
+<h4 id="các-bước-triển-khai-cloudformation-trên-aws">Các bước triển khai CloudFormation trên AWS</h4>
+<p><strong>Bước 1:</strong> Chọn Create Stack</p>
+<blockquote>
+<p>Vào CloudFormation và Chọn Stack → Chọn Create Stack</p>
+</blockquote>
+<p><img src="/3.technical-implementation/cloud_formation/create_stack.png" alt="Create Stack"></p>
+<p><strong>Bước 2:</strong> Chọn file cấu hình CloudFormation <a href="https://github.com/Heahaidu/interest-project/blob/main/infra.json">có sẵn</a></p>
+<blockquote>
+<p>Chọn &ldquo;Choose an existing template&rdquo; và &ldquo;Upload a template file&rdquo;. Rồi ấn chọn &ldquo;Choose file&rdquo; → Next</p>
+</blockquote>
+<p><img src="/3.technical-implementation/cloud_formation/import_file.png" alt="Import File"></p>
+<p><strong>Bước 3:</strong> Chờ CloudFormation tạo hoàn tất triển khai hạ tầng</p>
+<blockquote>
+<p>Chờ tới khi tất cả các Stack được thông báo hoàn tất</p>
+</blockquote>
+<p><img src="/3.technical-implementation/cloud_formation/wait.png" alt="wait"></p>
+<p>Kết quả sau khi triển khai thành công</p>
+<p><img src="/3.technical-implementation/cloud_formation/result.png" alt="result"></p>
+<hr>
+<h3 id="tổng-quan">Tổng quan</h3>
+<p><img src="/2.architect/Solution-Architecture.jpg" alt="Solution Architecture"></p>
+<h4 id="các-tham-số-cấu-hình-cloudformation">Các tham số cấu hình CloudFormation</h4>
+<p><img src="/3.technical-implementation/cloud_formation/cloudformation_stack.png" alt="CloudFormation Stack"></p>
+<p>Đây là các tham số người dùng có thể thay đổi khi tạo CloudFormation stack.<br>
+Các tham số cho phép tùy biến tên tài nguyên, hạ tầng mạng, database, container image và khả năng mở rộng của hệ thống.</p>
+<hr>
+<h5 id="1-tham-số-chung-của-dự-án">1. Tham số chung của dự án</h5>
+<ul>
+<li><strong>ProjectName</strong><br>
+Tên dự án.<br>
+Dùng để đặt tên cho các tài nguyên AWS như VPC, ECS Cluster, ECS Service, RDS và CloudFront.</li>
+</ul>
+<hr>
+<h5 id="2-tham-số-mạng">2. Tham số mạng</h5>
+<p>Các tham số xác định cấu trúc mạng VPC và subnet.</p>
+<ul>
+<li>
+<p><strong>VpcCidr</strong><br>
+Dải địa chỉ CIDR của VPC.</p>
+</li>
+<li>
+<p><strong>PublicSubnet1Cidr</strong>, <strong>PublicSubnet2Cidr</strong><br>
+CIDR của hai public subnet ở hai Availability Zone.<br>
+Dùng cho Application Load Balancer và NAT Gateway.</p>
+</li>
+<li>
+<p><strong>PrivateSubnet1Cidr</strong>, <strong>PrivateSubnet2Cidr</strong><br>
+CIDR của hai private subnet ở hai Availability Zone.<br>
+Dùng cho ECS Fargate, RDS, Redis và Kafka.</p>
+</li>
+</ul>
+<hr>
+<h5 id="3-tham-số-s3-bucket">3. Tham số S3 Bucket</h5>
+<ul>
+<li>
+<p><strong>ImagesBucketName</strong><br>
+Tên bucket lưu trữ dữ liệu media như hình ảnh và file upload.<br>
+Bucket được gắn thêm AWS Account ID để tránh trùng tên toàn cục.</p>
+</li>
+<li>
+<p><strong>WebBucketName</strong><br>
+Tên bucket lưu trữ frontend static website.<br>
+Bucket được sử dụng làm origin cho CloudFront.</p>
+</li>
+</ul>
+<hr>
+<h5 id="4-tham-số-tích-hợp-github-cicd">4. Tham số tích hợp GitHub CI/CD</h5>
+<p>Các tham số xác định repository GitHub được phép deploy lên AWS.</p>
+<ul>
+<li>
+<p><strong>GitHubOrg</strong><br>
+Tên tổ chức hoặc user GitHub.</p>
+</li>
+<li>
+<p><strong>GitHubRepo</strong><br>
+Tên repository chứa source code.</p>
+</li>
+<li>
+<p><strong>GitHubBranch</strong><br>
+Branch được phép assume IAM Role thông qua GitHub OIDC.<br>
+Thường sử dụng branch <code>main</code>.</p>
+</li>
+</ul>
+<hr>
+<h5 id="5-tham-số-database">5. Tham số Database</h5>
+<p>Các tham số cấu hình cho các RDS PostgreSQL instance.</p>
+<ul>
+<li>
+<p><strong>DbUsername</strong><br>
+Tên người dùng database.</p>
+</li>
+<li>
+<p><strong>DbPassword</strong><br>
+Mật khẩu database.<br>
+Tham số được ẩn khi nhập.</p>
+</li>
+<li>
+<p><strong>DbPort</strong><br>
+Cổng kết nối PostgreSQL.<br>
+Giá trị mặc định là 5432.</p>
+</li>
+<li>
+<p><strong>DbInstanceClass</strong><br>
+Loại instance của RDS.</p>
+</li>
+<li>
+<p><strong>DbAllocatedStorage</strong><br>
+Dung lượng lưu trữ cho mỗi database.</p>
+</li>
+<li>
+<p><strong>DbMultiAZ</strong><br>
+Bật hoặc tắt chế độ Multi-AZ cho RDS.</p>
+</li>
+</ul>
+<hr>
+<h5 id="6-tham-số-container-và-service">6. Tham số container và service</h5>
+<ul>
+<li>
+<p><strong>ContainerPort</strong><br>
+Cổng mà container backend lắng nghe.</p>
+</li>
+<li>
+<p><strong>ServiceAName</strong>, <strong>ServiceBName</strong>, <strong>ServiceCName</strong>, <strong>ServiceDName</strong><br>
+Tên logic của các microservices:</p>
+<ul>
+<li>User</li>
+<li>Notification</li>
+<li>Chatbot</li>
+<li>Event</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="7-tham-số-docker-image-và-ecr">7. Tham số Docker Image và ECR</h5>
+<ul>
+<li>
+<p><strong>EcrRegion</strong><br>
+AWS Region chứa Amazon ECR repository.</p>
+</li>
+<li>
+<p><strong>ImageTag</strong><br>
+Tag của Docker image được deploy.</p>
+</li>
+</ul>
+<hr>
+<h5 id="8-tham-số-định-tuyến-api">8. Tham số định tuyến API</h5>
+<ul>
+<li>
+<p><strong>ServiceAPaths</strong><br>
+Các path API được route đến User Service.</p>
+</li>
+<li>
+<p><strong>ServiceBPaths</strong><br>
+Các path API được route đến Notification Service.</p>
+</li>
+<li>
+<p><strong>ServiceCPaths</strong><br>
+Các path API được route đến Chatbot Service.</p>
+</li>
+<li>
+<p><strong>ServiceDPaths</strong><br>
+Các path API được route đến Event Service.</p>
+</li>
+</ul>
+<hr>
+<h5 id="9-tham-số-health-check">9. Tham số health check</h5>
+<ul>
+<li><strong>HealthCheckPath</strong><br>
+Endpoint dùng để kiểm tra trạng thái container.</li>
+</ul>
+<hr>
+<h5 id="10-tham-số-số-lượng-service">10. Tham số số lượng service</h5>
+<ul>
+<li><strong>DesiredCountA</strong>, <strong>DesiredCountB</strong>, <strong>DesiredCountC</strong>, <strong>DesiredCountD</strong><br>
+Số lượng ECS task ban đầu cho từng microservice.</li>
+</ul>
+<hr>
+<h5 id="11-tham-số-auto-scaling">11. Tham số Auto Scaling</h5>
+<ul>
+<li>
+<p><strong>AutoScaleMin</strong><br>
+Số lượng task tối thiểu.</p>
+</li>
+<li>
+<p><strong>AutoScaleMax</strong><br>
+Số lượng task tối đa.</p>
+</li>
+<li>
+<p><strong>AutoScaleCpuTarget</strong><br>
+Ngưỡng CPU trung bình để kích hoạt auto scaling.</p>
+</li>
+</ul>
+<hr>
+<h4 id="outputs-kết-quả-sau-khi-deploy">Outputs (Kết quả sau khi deploy)</h4>
+<p>Phần Outputs cung cấp các thông tin đầu ra quan trọng sau khi CloudFormation stack được triển khai thành công.<br>
+Các giá trị này được dùng để truy cập hệ thống và cấu hình ứng dụng.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span> <span style="color:#e6db74">&#34;Outputs&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;AlbDnsName&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;Alb&#34;</span>, <span style="color:#e6db74">&#34;DNSName&#34;</span>] } },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;HttpApiEndpoint&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;HttpApi&#34;</span>, <span style="color:#e6db74">&#34;ApiEndpoint&#34;</span>] } },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Db1Endpoint&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;Db1&#34;</span>, <span style="color:#e6db74">&#34;Endpoint.Address&#34;</span>] } },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Db2Endpoint&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;Db2&#34;</span>, <span style="color:#e6db74">&#34;Endpoint.Address&#34;</span>] } },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Db3Endpoint&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;Db3&#34;</span>, <span style="color:#e6db74">&#34;Endpoint.Address&#34;</span>] } },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ImagesBucket&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Ref&#34;</span>: <span style="color:#e6db74">&#34;ImagesBucket&#34;</span> } },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;WebBucket&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Ref&#34;</span>: <span style="color:#e6db74">&#34;WebBucket&#34;</span> } },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;CloudFrontDomain&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;WebDistribution&#34;</span>, <span style="color:#e6db74">&#34;DomainName&#34;</span>] } },
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;CloudFrontDistributionId&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Ref&#34;</span>: <span style="color:#e6db74">&#34;WebDistribution&#34;</span> } },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;EcsTaskRoleArn&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;EcsTaskRole&#34;</span>, <span style="color:#e6db74">&#34;Arn&#34;</span>] } },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;GitHubDeployRoleArn&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::GetAtt&#34;</span>: [<span style="color:#e6db74">&#34;GitHubDeployRole&#34;</span>, <span style="color:#e6db74">&#34;Arn&#34;</span>] } },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;RedisEndpoint&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::Sub&#34;</span>: <span style="color:#e6db74">&#34;redis.${ProjectName}.local:6379&#34;</span> } },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;KafkaBootstrap&#34;</span>: { <span style="color:#f92672">&#34;Value&#34;</span>: { <span style="color:#f92672">&#34;Fn::Sub&#34;</span>: <span style="color:#e6db74">&#34;kafka.${ProjectName}.local:9092&#34;</span> } }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><hr>
+<h5 id="thông-tin-truy-cập-hệ-thống">Thông tin truy cập hệ thống</h5>
+<ul>
+<li>
+<p><strong>AlbDnsName</strong><br>
+DNS của Application Load Balancer.<br>
+Dùng để kiểm tra trực tiếp backend services qua HTTP.</p>
+</li>
+<li>
+<p><strong>HttpApiEndpoint</strong><br>
+Endpoint của API Gateway HTTP API.<br>
+Đây là điểm vào chính cho các request API từ frontend hoặc client bên ngoài.</p>
+</li>
+<li>
+<p><strong>CloudFrontDomain</strong><br>
+Domain của CloudFront distribution.<br>
+Dùng để truy cập frontend static website.</p>
+</li>
+<li>
+<p><strong>CloudFrontDistributionId</strong><br>
+ID của CloudFront distribution.<br>
+Dùng cho thao tác invalidate cache trong CI/CD pipeline.</p>
+</li>
+</ul>
+<hr>
+<h5 id="thông-tin-database">Thông tin Database</h5>
+<ul>
+<li>
+<p><strong>Db1Endpoint</strong><br>
+Endpoint của database dùng cho User Service.</p>
+</li>
+<li>
+<p><strong>Db2Endpoint</strong><br>
+Endpoint của database dùng cho Notification Service và Chatbot Service.</p>
+</li>
+<li>
+<p><strong>Db3Endpoint</strong><br>
+Endpoint của database dùng cho Event Service.</p>
+</li>
+</ul>
+<p>Các database chỉ truy cập được từ bên trong VPC.</p>
+<hr>
+<h5 id="thông-tin-lưu-trữ-s3">Thông tin lưu trữ S3</h5>
+<ul>
+<li>
+<p><strong>ImagesBucket</strong><br>
+Tên S3 bucket dùng để lưu trữ hình ảnh và file upload.</p>
+</li>
+<li>
+<p><strong>WebBucket</strong><br>
+Tên S3 bucket dùng để lưu trữ frontend static website.<br>
+Bucket được truy cập thông qua CloudFront.</p>
+</li>
+</ul>
+<hr>
+<h5 id="thông-tin-iam">Thông tin IAM</h5>
+<ul>
+<li>
+<p><strong>EcsTaskRoleArn</strong><br>
+ARN của IAM Role được ECS Task sử dụng.<br>
+Role này cho phép service truy cập các tài nguyên AWS như S3.</p>
+</li>
+<li>
+<p><strong>GitHubDeployRoleArn</strong><br>
+ARN của IAM Role dành cho GitHub Actions.<br>
+Role này được dùng để deploy frontend và backend thông qua OIDC.</p>
+</li>
+</ul>
+<hr>
+<h5 id="thông-tin-service-nội-bộ">Thông tin service nội bộ</h5>
+<ul>
+<li>
+<p><strong>RedisEndpoint</strong><br>
+Endpoint Redis nội bộ trong VPC.<br>
+Các backend service sử dụng để cache và session management.</p>
+</li>
+<li>
+<p><strong>KafkaBootstrap</strong><br>
+Bootstrap server của Kafka nội bộ.<br>
+Dùng cho giao tiếp bất đồng bộ giữa các microservices.</p>
+</li>
+</ul>
+<h3 id="giai-đoạn-5-cicd-pipeline-tự-động-hóa-build-và-triển-khai">Giai đoạn 5: CI/CD Pipeline (Tự động hóa build và triển khai)</h3>
+<p>Sau khi hạ tầng được triển khai bằng CloudFormation, hệ thống áp dụng CI/CD pipeline nhằm tự động hóa quá trình build, đóng gói và triển khai frontend và backend services lên môi trường AWS.</p>
+<p>Pipeline được xây dựng bằng <strong>GitHub Actions</strong>, sử dụng <strong>OIDC</strong> để xác thực với AWS mà không cần lưu trữ access key tĩnh.</p>
+<hr>
+<h4 id="51-tổng-quan-cicd-pipeline">5.1. Tổng quan CI/CD Pipeline</h4>
+<ul>
+<li>Mô hình repository: <strong>Mono‑repo</strong></li>
+<li>Mỗi microservice và frontend có <a href="https://github.com/Heahaidu/interest-project/blob/main/.github/workflows/">workflow</a> riêng</li>
+<li>Pipeline được kích hoạt khi:
+<ul>
+<li>Push code lên nhánh <code>main</code></li>
+<li>Thay đổi trong thư mục tương ứng của service hoặc frontend</li>
+</ul>
+</li>
+</ul>
+<p>Pipeline đảm bảo:</p>
+<ul>
+<li>Build và deploy độc lập từng thành phần</li>
+<li>Giảm rủi ro ảnh hưởng chéo giữa các service</li>
+<li>Phù hợp với kiến trúc microservices</li>
+</ul>
+<hr>
+<h4 id="52-cicd-pipeline-cho-frontend-nextjs">5.2. CI/CD Pipeline cho Frontend (Next.js)</h4>
+<p>Frontend được build dưới dạng <strong>static website</strong> và triển khai lên <strong>Amazon S3</strong>, phân phối qua <strong>CloudFront</strong>.</p>
+<p><strong>Luồng pipeline frontend:</strong></p>
+<ol>
+<li>Checkout source code</li>
+<li>Cài đặt Node.js và dependencies</li>
+<li>Build ứng dụng Next.js với chế độ static export</li>
+<li>Assume IAM Role trên AWS thông qua OIDC</li>
+<li>Đồng bộ file build lên S3</li>
+<li>Invalidate cache CloudFront</li>
+</ol>
+<p><strong>Đặc điểm chính:</strong></p>
+<ul>
+<li>Không cần Docker cho frontend</li>
+<li>Không lưu thông tin AWS credential trong GitHub</li>
+<li>CloudFront đảm bảo người dùng luôn truy cập phiên bản mới nhất</li>
+</ul>
+<p>Pipeline này cho phép frontend được cập nhật tự động ngay sau khi merge code.</p>
+<hr>
+<h4 id="53-cicd-pipeline-cho-backend-microservices">5.3. CI/CD Pipeline cho Backend Microservices</h4>
+<p>Mỗi backend service (User, Notification, Chatbot, Event) có workflow riêng nhưng cùng cấu trúc, do hệ thống sử dụng mono‑repo.</p>
+<p><strong>Luồng pipeline backend service:</strong></p>
+<ol>
+<li>Checkout source code</li>
+<li>Assume IAM Role thông qua GitHub OIDC</li>
+<li>Đăng nhập Amazon ECR</li>
+<li>Build Docker image cho service</li>
+<li>Push Docker image lên ECR với tag theo commit SHA</li>
+<li>Lấy task definition hiện tại từ ECS</li>
+<li>Cập nhật task definition với image mới</li>
+<li>Deploy task definition mới lên ECS Service</li>
+</ol>
+<hr>
+<h4 id="54-tự-động-deploy-ecs-service">5.4. Tự động deploy ECS Service</h4>
+<ul>
+<li>Mỗi microservice tương ứng với:
+<ul>
+<li>Một ECS Service</li>
+<li>Một ECR repository</li>
+</ul>
+</li>
+<li>ECS thực hiện rolling update khi có task definition mới</li>
+<li>Application Load Balancer đảm bảo:
+<ul>
+<li>Không gián đoạn dịch vụ</li>
+<li>Chỉ route traffic đến các task healthy</li>
+</ul>
+</li>
+</ul>
+<p>Quá trình deploy diễn ra hoàn toàn tự động và không cần can thiệp thủ công.</p>
+<hr>
+<h4 id="55-bảo-mật-trong-cicd-pipeline">5.5. Bảo mật trong CI/CD Pipeline</h4>
+<ul>
+<li>GitHub Actions sử dụng <strong>OIDC</strong> để assume IAM Role</li>
+<li>Không sử dụng access key hoặc secret tĩnh</li>
+<li>IAM Role cho pipeline chỉ có quyền:
+<ul>
+<li>Push image lên ECR</li>
+<li>Cập nhật ECS Service</li>
+<li>Deploy frontend lên S3 và CloudFront</li>
+</ul>
+</li>
+</ul>
+<p>Thiết kế này giảm rủi ro lộ thông tin xác thực và tuân theo nguyên tắc <em>least privilege</em>.</p>
+<hr>
+<h4 id="56-lợi-ích-của-mô-hình-cicd">5.6. Lợi ích của mô hình CI/CD</h4>
+<ul>
+<li>Tự động hóa toàn bộ quy trình build và deploy</li>
+<li>Giảm lỗi triển khai thủ công</li>
+<li>Cho phép deploy độc lập từng microservice</li>
+<li>Phù hợp với kiến trúc cloud-native và microservices</li>
+<li>Dễ mở rộng khi bổ sung thêm service mới</li>
+</ul>
+<hr>
+<h4 id="57-tổng-kết">5.7. Tổng kết</h4>
+<p>Giai đoạn CI/CD Pipeline hoàn thiện chu trình phát triển và triển khai hệ thống, kết nối chặt chẽ giữa source code, hạ tầng CloudFormation và môi trường runtime trên AWS.</p>
+<p>Thiết kế này giúp hệ thống duy trì tính ổn định, linh hoạt và sẵn sàng mở rộng trong tương lai.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/vi/2-proposal/3-technical-implementation/" title="Triển khai kĩ thuật"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/vi/2-proposal/3-technical-implementation/3.2-technical-requirements/" title="Yêu cầu kĩ thuật" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1778603254"></script>
+    <script src="/js/perfect-scrollbar.min.js?1778603254"></script>
+    <script src="/js/jquery.sticky.js?1778603254"></script>
+    <script src="/js/featherlight.min.js?1778603254"></script>
+    <script src="/js/highlight.pack.js?1778603254"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1778603254"></script>
+    <script src="/js/learn.js?1778603254"></script>
+    <script src="/js/hugo-learn.js?1778603254"></script>
+
+    <link href="/mermaid/mermaid.css?1778603254" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1778603254"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>

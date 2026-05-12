@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.1">
+    <meta name="description" content="">
+<meta name="author" content="nguyenhaiduong20004@gmail.com">
+
+    <link rel="icon" href="/images/favicon-16x16.png" type="image/png">
+
+    <title>Lịch trình &amp; Các mốc thời gian :: Workshop</title>
+
+    
+    <link href="/css/nucleus.css?1778602821" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1778602821" rel="stylesheet">
+    <link href="/css/hybrid.css?1778602821" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1778602821" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1778602821" rel="stylesheet">
+    <link href="/css/auto-complete.css?1778602821" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1778602821" rel="stylesheet">
+    <link href="/css/theme.css?1778602821" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1778602821" rel="stylesheet">
+    
+    <link href="/css/theme-Workshop.css?1778602821" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1778602821"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+<style>
+    .theme-toggle {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 9999;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: var(--button-day-light-bg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        background: var(button-day-light-bg-hover);
+    }
+
+    .theme-toggle svg {
+        width: 16px;
+        height: 16px;
+        transition: fill 0.3s ease;
+    }
+
+    [data-theme="light"] .icon-moon {
+        display: block;
+    }
+
+    [data-theme="light"] .icon-sun {
+        display: none;
+    }
+
+    [data-theme="dark"] .icon-moon {
+        display: none;
+    }
+
+    [data-theme="dark"] .icon-sun {
+        display: block;
+    }
+</style>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000" stroke="#000"
+        stroke-width="2" fill="none">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+</button>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme") || "dark";
+        const next = current === "light" ? "dark" : "light";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        updateLogo(next);
+    }
+
+    function updateLogo(theme) {
+        const light = document.querySelector(".logo-light");
+        const dark = document.querySelector(".logo-dark");
+        if (!light || !dark) return;
+        if (theme === "dark") {
+            light.style.display = "none";
+            dark.style.display = "block";
+        } else {
+            light.style.display = "block";
+            dark.style.display = "none";
+        }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    (function () {
+        const orig = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function (type, fn, options) {
+            
+            if (type === 'touchmove') {
+                if (typeof options === 'object') options.passive = true;
+                else options = { passive: true, capture: options || false };
+            }
+            return orig.call(this, type, fn, options);
+        };
+    })();
+
+    if (window.location.pathname === "/") {
+        window.location.replace("/vi")
+    }
+</script>
+  </head>
+  <body class="" data-url="/2-proposal/4-timeline-milestones/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+  
+  
+  <div id="header-wrapper">
+    <div id="header">
+      <div>
+  <a id="logo" href="/">
+    <img class="logo-dark" src="/images/logo-1.png" width="70%">
+    <img class="logo-light" src="/images/logo-0.png" width="70%">
+  </a>
+</div>
+    </div>
+  </div>
+  <div class="searchbox">
+    
+    <div class="searchbox-content">
+    <label for="search-by"><img class="logo-dark" src="/images/search-1.svg" width="18" height="18"/><img class="logo-light" src="/images/search-0.svg" width="18" height="18"/></label>
+    <input data-search-input id="search-by" type="search" placeholder="">
+    <span data-search-clear=""><img class="logo-dark" src="/images/multiply-1.png" width="18" height="18"><img class="logo-light" src="/images/multiply-0.png" width="18" height="18"></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1778602821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1778602821"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1778602821"></script>
+    
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+
+      
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/" title="Nhật ký công việc" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/">
+    <b> 1. </b>Nhật ký công việc
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/1/" title="Worklog tuần 1" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/1/">
+    <b> 1.1 </b>Worklog tuần 1
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/2/" title="Worklog tuần 2" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/2/">
+    <b> 1.2 </b>Worklog tuần 2
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/3/" title="Worklog tuần 3" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/3/">
+    <b> 1.3 </b>Worklog tuần 3
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/4/" title="Worklog tuần 4" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/4/">
+    <b> 1.4 </b>Worklog tuần 4
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/5/" title="Worklog tuần 5" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/5/">
+    <b> 1.5 </b>Worklog tuần 5
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/6/" title="Worklog tuần 6" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/6/">
+    <b> 1.6 </b>Worklog tuần 6
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/7/" title="Worklog tuần 7" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/7/">
+    <b> 1.7 </b>Worklog tuần 7
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/8/" title="Worklog tuần 8" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/8/">
+    <b> 1.8 </b>Worklog tuần 8
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/9/" title="Worklog tuần 9" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/9/">
+    <b> 1.9 </b>Worklog tuần 9
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/10/" title="Worklog tuần 10" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/10/">
+    <b> 1.10 </b>Worklog tuần 10
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/11/" title="Worklog tuần 11" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/11/">
+    <b> 1.11 </b>Worklog tuần 11
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/1-worklog/12/" title="Worklog tuần 12" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/1-worklog/12/">
+    <b> 1.12 </b>Worklog tuần 12
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/" title="Project proposal" class="dd-item 
+        parent
+        
+        
+        ">
+  <a href="/2-proposal/">
+    <b> 2. </b>Project proposal
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/1-problem-statement/" title="Mô tả vấn đề" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/1-problem-statement/">
+     <b> 1. </b> Mô tả vấn đề
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/2-solution-architect/" title="Kiến trúc giải pháp" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/2-solution-architect/">
+     <b> 2. </b> Kiến trúc giải pháp
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/3-technical-implementation/" title="Triển khai kĩ thuật" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/3-technical-implementation/">
+     <b> 3. </b> Triển khai kĩ thuật
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/3-technical-implementation/3.1-implementation-phases/" title="Các giai đoạn triển khai" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/3-technical-implementation/3.1-implementation-phases/">
+     <b> 3.1 </b> Các giai đoạn triển khai
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/3-technical-implementation/3.2-technical-requirements/" title="Yêu cầu kĩ thuật" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/3-technical-implementation/3.2-technical-requirements/">
+     <b> 3.2 </b> Yêu cầu kĩ thuật
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/3-technical-implementation/3.3-component-design/" title="Thành phần thiết kế" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/3-technical-implementation/3.3-component-design/">
+     <b> 3.3 </b> Thành phần thiết kế
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/3-technical-implementation/3.4-security-architecture/" title="Kiến trúc bảo mật" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/3-technical-implementation/3.4-security-architecture/">
+     <b> 3.4 </b> Kiến trúc bảo mật
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/3-technical-implementation/3.5-scakability-design/" title="Khả năng mở rộng" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/3-technical-implementation/3.5-scakability-design/">
+     <b> 3.5 </b> Khả năng mở rộng
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/4-timeline-milestones/" title="Lịch trình &amp; Các mốc thời gian" class="dd-item 
+        
+        active
+        
+        ">
+  <a href="/2-proposal/4-timeline-milestones/">
+     <b> 4. </b> Lịch trình &amp; Các mốc thời gian
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/5-budget-estimation/" title="Dự toán ngân sách" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/5-budget-estimation/">
+     <b> 5. </b> Dự toán ngân sách
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/6-risk-assessment/" title="Đánh giá rủi ro" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/6-risk-assessment/">
+     <b> 6. </b> Đánh giá rủi ro
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/2-proposal/7-expected-outcomes/" title="Kết quả mong đợi" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/2-proposal/7-expected-outcomes/">
+     <b> 7. </b> Kết quả mong đợi
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/3-translate-blog/" title="Các bài blogs đã dịch" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/3-translate-blog/">
+    <b> 3. </b>Các bài blogs đã dịch
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/3-translate-blog/3.1/" title="Blog 1" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/3-translate-blog/3.1/">
+    <b> 3.1 </b>Blog 1
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/4-events/" title="Các events đã tham gia" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/4-events/">
+    <b> 4. </b>Các events đã tham gia
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/4-events/1/" title="Event 1" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/4-events/1/">
+     <b> 4.1 </b> Event 1
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/" title="Workshop" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/">
+    <b> 5. </b>Workshop
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/5.1-about/" title="Giới thiệu" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/5.1-about/">
+    <b> 5.1 </b>Giới thiệu
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/5.2-step/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/5.2-step/">
+    <b> 5.2 </b>Các bước chuẩn bị
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/5.3-be-https/" title="HTTPS đối với Backend và SPA cho Frontend" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/5.3-be-https/">
+    <b> 5.3 </b>HTTPS đối với Backend và SPA cho Frontend
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/5.4-clear-resource/" title="Kiểm tra kết quả" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/5.4-clear-resource/">
+    <b> 5.4 </b>Kiểm tra kết quả
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/5.5-video/" title="Video triển khai" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/5.5-video/">
+    <b> 5.5 </b>Video triển khai
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+<li data-nav-id="/5-workshop/5.6-clear-resource/" title="Dọn dẹp tài nguyên" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/5-workshop/5.6-clear-resource/">
+    <b> 5.6 </b>Dọn dẹp tài nguyên
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+    
+    
+    
+  </ul>
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/6-self-rating/" title="Tự đánh giá" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/6-self-rating/">
+    <b> 6. </b>Tự đánh giá
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+      
+      
+
+
+
+
+
+
+
+<li data-nav-id="/7-feedback/" title="Chia sẻ, đóng góp ý kiến" class="dd-item 
+        
+        
+        
+        ">
+  <a href="/7-feedback/">
+    <b> 7. </b>Chia sẻ, đóng góp ý kiến
+    
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+  
+  
+</li>
+
+
+
+      
+      
+    </ul>
+
+    
+    
+    <section id="shortcuts">
+      <h3></h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"><i class='fab fa-facebook'></i> AWS Study Group</a>
+        </li>
+        
+      </ul>
+    </section>
+    
+
+    
+    <section id="prefooter">
+      <hr class="hr-line"/>
+      <ul>
+        
+
+        
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> </a></li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+        <b> Workshop</b> <br>
+       <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+        <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+       <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+        
+   </left>
+   <left>
+       <br>
+       <br>
+           <b> Last Updated </b> <br>
+           <i><font color=orange>09-01-2026</font></i>
+       </left>
+       <left>
+           <br>
+           <br>
+               <b> Team </b> <br>
+              
+               <i> <a href=""  style="color:orange">Nguyễn Hải Dương  </a> <br>
+                   <a href=""  style="color:orange">Lư Hiếu Trung </a> <br>
+                   <a href=""  style="color:orange">Chương Nguyên Trương </a>
+                  
+           </i>
+           </left>
+   
+   <script async defer src="https://buttons.github.io/buttons.js"></script>
+   
+    </section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><img class="logo-dark" src="/images/list-1.png" width="16" height="16"/><img class="logo-light" src="/images/list-0.png" width="16" height="16"/></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Báo cáo thực tập</a> / <a href='/2-proposal/'>Project proposal</a> / Lịch trình & Các mốc thời gian
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-project-timeline-theo-tuần">1. Project Timeline (theo tuần)</a></li>
+    <li><a href="#2-các-mốc-quan-trọng">2. Các mốc quan trọng</a></li>
+    <li><a href="#43-mối-quan-hệ-phụ-thuộc-giữa-các-công-việc-và-thành-phần-trong-dự-án">4.3. Mối quan hệ phụ thuộc giữa các công việc và thành phần trong dự án.</a></li>
+    <li><a href="#44-phân-bổ-nguồn-lực">4.4. Phân bổ nguồn lực</a>
+      <ul>
+        <li><a href="#phân-bổ-theo-vai-trò-tổng-quan">Phân bổ theo vai trò (tổng quan)</a></li>
+        <li><a href="#phân-bổ-theo-giai-đoạn-ước-lượng-effort">Phân bổ theo giai đoạn (ước lượng effort)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Lịch trình &amp; Các mốc thời gian
+            </h1>
+          
+
+        
+
+
+
+	<p>Phần này tổng hợp tiến độ dự án theo <strong>mốc thời gian thực tế</strong> (worklog) nhằm đảm bảo tính minh bạch về quá trình phát triển, các mốc hoàn thành quan trọng, quan hệ phụ thuộc và phân bổ nguồn lực.</p>
+<hr>
+<h2 id="1-project-timeline-theo-tuần">1. Project Timeline (theo tuần)</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Tuần</th>
+          <th>Thời gian</th>
+          <th>Trọng tâm</th>
+          <th>Công việc chính (tóm tắt)</th>
+          <th>Đầu ra / Kết quả</th>
+          <th>Phụ trách</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>W1</td>
+          <td>20/10 – 26/10</td>
+          <td>Ideation</td>
+          <td>20/10 họp nhóm nêu ý tưởng sản phẩm. 25/10 họp chốt ý tưởng theo hướng <strong>monolithic</strong> (thiết kế 1 website).</td>
+          <td>Ý tưởng + scope ban đầu</td>
+          <td>Nhóm</td>
+      </tr>
+      <tr>
+          <td>W2</td>
+          <td>27/10 – 02/11</td>
+          <td>Pivot kiến trúc</td>
+          <td>02/11 họp nhóm chỉnh sửa kiến trúc từ monolithic → <strong>microservices</strong> (dựa trên định hướng đã thống nhất).</td>
+          <td>Kiến trúc tổng thể microservices (bản cập nhật)</td>
+          <td>Nhóm</td>
+      </tr>
+      <tr>
+          <td>W3</td>
+          <td>03/11 – 09/11</td>
+          <td>Thiết kế DB (microservices)</td>
+          <td>04–08/11 thiết kế lại database theo microservices. 09/11 họp xác nhận DB, giải thích mục đích bảng/kiểu dữ liệu/kiến trúc và chia việc.</td>
+          <td>DB design v2 + phân rã domain theo service</td>
+          <td>Nhóm (kiến trúc &amp; phân rã service)</td>
+      </tr>
+      <tr>
+          <td>W4</td>
+          <td>10/11 – 16/11</td>
+          <td>Frontend (phase 1)</td>
+          <td>11–16/11 thiết kế &amp; xây dựng FE bằng Next.js theo hướng Twitter/Facebook/LinkedIn/Luma.</td>
+          <td>FE prototype bản đầu</td>
+          <td>H.Dương</td>
+      </tr>
+      <tr>
+          <td>W5</td>
+          <td>17/11 – 23/11</td>
+          <td>Frontend (phase 2)</td>
+          <td>19/11 đánh giá UI chưa phù hợp → đổi hướng, tìm ý tưởng mới, tham khảo OpenSea.</td>
+          <td>FE direction mới (UI/UX)</td>
+          <td>H.Dương</td>
+      </tr>
+      <tr>
+          <td>W6</td>
+          <td>24/11 – 30/11</td>
+          <td>FE demo + khởi động Event Service</td>
+          <td>26/11 FE hoàn tất ~70% và demo team. Bắt đầu Event Service: học Spring Boot/microservices/giao tiếp/bảo mật/service discovery (Eureka → định hướng Cloud Map). 27–29/11 thiết kế &amp; phát triển API Event (list/detail/filter/interest/registration…). 30/11 bắt đầu phase tích hợp FE–BE.</td>
+          <td>FE demo ổn, Event Service API khung, bắt đầu tích hợp</td>
+          <td>H.Dương</td>
+      </tr>
+      <tr>
+          <td>W7</td>
+          <td>01/12 – 07/12</td>
+          <td>Notification Service + Kafka + tích hợp</td>
+          <td>01/12 thiết kế DB Notification. 02/12 dựng Notification Service (entity/controller/API). 03/12 tích hợp Kafka: Event publish → Notification consume (test Postman). 04/12 refactor luồng gửi email: chuyển gửi email sang Notification Service để tránh overload Event Service và hỗ trợ scale theo queue. 05–06/12 chỉnh FE + Notification giao tiếp. 07/12 bắt đầu phase fix UI/bug tổng.</td>
+          <td>Notification Service chạy ổn + Kafka flow, integration cơ bản FE–BE</td>
+          <td>H.Dương</td>
+      </tr>
+      <tr>
+          <td>W8</td>
+          <td>08/12 – 14/12</td>
+          <td>Stabilize &amp; polish</td>
+          <td>07–15/12 tập trung fix bug FE và chỉnh UI theo góp ý thành viên. Hoàn thiện đồng bộ dữ liệu/DTO giữa FE và BE (create/edit event, loại bỏ field dư).</td>
+          <td>FE/BE khớp dữ liệu hơn, UI ổn định hơn</td>
+          <td>Nhóm</td>
+      </tr>
+      <tr>
+          <td>W9</td>
+          <td>15/12 – 21/12</td>
+          <td>Deploy Frontend + chuẩn bị Deploy Backend</td>
+          <td>16/12 deploy FE lên AWS S3 + CloudFront (tạo S3/CloudFront/IAM Role bằng CloudFormation, dùng GitHub Actions auto deploy). 17/12 thêm S3 cho Event Service để upload ảnh khi tạo event. 18–19/12 thiết kế kiến trúc để đưa BE lên môi trường thực tế (setup thủ công để debug, có lúc phải mở public subnet để bắt lỗi). 20/12 setup môi trường thành công &amp; bắt đầu viết CloudFormation cho backend. 21/12 tiếp tục CloudFormation.</td>
+          <td>FE live trên AWS, BE chuẩn bị hạ tầng, CloudFormation draft</td>
+          <td>H.Dương</td>
+      </tr>
+      <tr>
+          <td>W10</td>
+          <td>22/12 – 28/12</td>
+          <td>CloudFormation deploy + fix production issues</td>
+          <td>22/12 triển khai CloudFormation, push image lên ECR test deploy, gặp lỗi ALB unhealthy/ECS recreate task. 22–24/12 fix lần lượt: env vars DB, kết nối DB, cơ chế tạo table (ddl-auto), health check endpoint (Actuator). 25/12 xử lý vấn đề FE gọi BE (HTTPS/HTTP) và routing SPA: tạm thời thêm API Gateway và CloudFront Function để xử lý điều hướng. 26/12 kiểm thử chức năng cơ bản và phân công sửa. 27/12 viết proposal báo cáo.</td>
+          <td>Hạ tầng chạy được, ALB healthy, FE gọi được BE (tạm thời theo giải pháp đã áp dụng), proposal</td>
+          <td>Nhóm</td>
+      </tr>
+      <tr>
+          <td>W11</td>
+          <td>29/12 – 04/01</td>
+          <td>Hoàn thiện tài liệu</td>
+          <td>28/12 – 03/01 tổng hợp và hoàn thiện worklog, chỉnh sửa tài liệu và chuẩn bị phần báo cáo cuối.</td>
+          <td>Worklog/tài liệu hoàn thiện</td>
+          <td>H.Dương</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Ghi chú về User Service &amp; AI Chat Service:</strong><br>
+Hai service này do thành viên khác phát triển nên không có worklog chi tiết theo ngày trong tài liệu này. Tuy nhiên, chúng được phát triển <strong>song song</strong> trong giai đoạn hệ thống đã chuyển sang microservices (ước lượng từ <strong>W3–W8</strong>) để kịp tích hợp và triển khai chung.</p>
+<hr>
+<h2 id="2-các-mốc-quan-trọng">2. Các mốc quan trọng</h2>
+<ul>
+<li><strong>20/10/2025 (W1):</strong> Kick-off, nêu ý tưởng sản phẩm.</li>
+<li><strong>25/10/2025 (W1):</strong> Chốt ý tưởng sản phẩm (bản monolithic).</li>
+<li><strong>02/11/2025 (W2):</strong> Pivot kiến trúc sang microservices.</li>
+<li><strong>08/11/2025 (W3):</strong> Hoàn tất thiết kế DB theo microservices.</li>
+<li><strong>09/11/2025 (W3):</strong> Meeting xác nhận DB + giải thích thiết kế + chia việc, đề xuất 4 services (user+page, notification, event, ai).</li>
+<li><strong>26/11/2025 (W6):</strong> FE đạt ~70% và demo, khởi động Event Service.</li>
+<li><strong>04/12/2025 (W7):</strong> Refactor luồng gửi email: chuyển sang Notification Service đọc Kafka để tránh overload và hỗ trợ scaling.</li>
+<li><strong>16/12/2025 (W9):</strong> Frontend deploy lên AWS (S3 + CloudFront) và tự động hóa deploy bằng GitHub Actions (OIDC).</li>
+<li><strong>24/12/2025 (W10):</strong> Fix ALB unhealthy nhờ bổ sung health endpoint cấu hình phù hợp.</li>
+<li><strong>25/12/2025 (W10):</strong> Giải quyết vấn đề FE–BE (HTTPS/HTTP) và SPA routing bằng phương án tích hợp API Gateway/CloudFront Function (tạm thời).</li>
+<li><strong>27/12/2025 (W10):</strong> Hoàn thiện worklog/tài liệu.</li>
+<li><strong>03/01/2026 (W11):</strong> Hoàn thiện proposal báo cáo.</li>
+</ul>
+<hr>
+<h2 id="43-mối-quan-hệ-phụ-thuộc-giữa-các-công-việc-và-thành-phần-trong-dự-án">4.3. Mối quan hệ phụ thuộc giữa các công việc và thành phần trong dự án.</h2>
+<ul>
+<li><strong>Ý tưởng &amp; scope</strong> (W1) → là đầu vào để <strong>thiết kế kiến trúc</strong> (W2).</li>
+<li><strong>Kiến trúc microservices</strong> (W2) → quyết định cách <strong>phân rã database</strong> (W3) và phạm vi từng service.</li>
+<li><strong>DB design theo service</strong> (W3) → là nền tảng để triển khai API/Entity (W6–W7) và tích hợp FE–BE (W6–W8).</li>
+<li><strong>API &amp; model ổn định</strong> (W6–W8) → là điều kiện cần để deploy hạ tầng backend và scale ổn định trên AWS (W9–W10).</li>
+<li><strong>CloudFormation deploy</strong> (W10) phụ thuộc mạnh vào:
+<ul>
+<li>Cấu hình <strong>environment variables</strong> (DB endpoints, credentials, bucket…)</li>
+<li><strong>Health check endpoint</strong> đúng chuẩn ALB</li>
+<li>Cơ chế <strong>khởi tạo schema</strong> (DDL migration) để service kết nối DB thành công</li>
+</ul>
+</li>
+<li><strong>FE live trên CloudFront</strong> (W9) → cần endpoint backend phù hợp (HTTPS), vì vậy phát sinh bước xử lý HTTPS/HTTP (W10).</li>
+</ul>
+<hr>
+<h2 id="44-phân-bổ-nguồn-lực">4.4. Phân bổ nguồn lực</h2>
+<h3 id="phân-bổ-theo-vai-trò-tổng-quan">Phân bổ theo vai trò (tổng quan)</h3>
+<ul>
+<li>
+<p><strong>H.Dương (vai trò chính):</strong></p>
+<ul>
+<li>Thiết kế kiến trúc cho team (microservices + hướng triển khai AWS)</li>
+<li>Phát triển <strong>Frontend (Next.js)</strong> + UI/UX</li>
+<li>Phát triển <strong>Event Service</strong> và <strong>Notification Service</strong></li>
+<li>Tích hợp Kafka (Event → Notification), tối ưu luồng email để hỗ trợ scaling</li>
+<li>Triển khai FE lên AWS, tham gia thiết kế/triển khai CloudFormation và debug hệ thống</li>
+</ul>
+</li>
+<li>
+<p><strong>Các thành viên khác (tổng quan):</strong></p>
+<ul>
+<li>Phát triển <strong>User(+Page) Service</strong></li>
+<li>Phát triển <strong>AI Chat Service</strong></li>
+<li>Tham gia test, review UI/UX, tích hợp và hoàn thiện tài liệu/demo</li>
+</ul>
+</li>
+</ul>
+<h3 id="phân-bổ-theo-giai-đoạn-ước-lượng-effort">Phân bổ theo giai đoạn (ước lượng effort)</h3>
+<ul>
+<li><strong>W1–W3 (20%):</strong> Phân tích, kiến trúc, thiết kế DB, phân công.</li>
+<li><strong>W4–W8 (55%):</strong> Implement FE + BE (Event/Notification), tích hợp, fix bug.</li>
+<li><strong>W9–W10 (20%):</strong> Deploy AWS, CloudFormation, CI/CD, debug production issues.</li>
+<li><strong>W11 (5%):</strong> Hoàn thiện worklog/tài liệu/báo cáo.</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/2-proposal/3-technical-implementation/3.5-scakability-design/" title="Khả năng mở rộng"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/2-proposal/5-budget-estimation/" title="Dự toán ngân sách" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1778602821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1778602821"></script>
+    <script src="/js/jquery.sticky.js?1778602821"></script>
+    <script src="/js/featherlight.min.js?1778602821"></script>
+    <script src="/js/highlight.pack.js?1778602821"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1778602821"></script>
+    <script src="/js/learn.js?1778602821"></script>
+    <script src="/js/hugo-learn.js?1778602821"></script>
+
+    <link href="/mermaid/mermaid.css?1778602821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1778602821"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>
