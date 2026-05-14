@@ -39,12 +39,15 @@
     --sidebar-li-active-color: white;
 
     --button-day-light-bg: #191E1E;
-    --sidebar-li-hover-bg: rgba(0,0,0,0.05);
+    --sidebar-li-hover-bg: rgba(0,0,0,0.1);
     --code-bg: #EBF2F2;
     --pre-bg: #EBF2F2;
     --code-color: #24292E;
     --pre-copy-bg: #cddfdf;
     --footer-color: #24292E;
+    --auto-complete-hover-bg: rgba(0,0,0,0.2);
+    --auto-complete-selection-bg: rgba(0,0,0,0.1);
+    --auto-complete-color: #000;
 }
 
 :root[data-theme="dark"] {
@@ -62,6 +65,9 @@
     --code-color: #F6F8FA;
     --pre-copy-bg: #949bab;
     --footer-color: #b3b3b3;
+    --auto-complete-hover-bg: #444;
+    --auto-complete-selection-bg: #333;
+    --auto-complete-color: #fff;
 }
 
 #top-github-link,
@@ -276,7 +282,7 @@ select[multiple=multiple]:focus {
 .searchbox-content input {
     font-family: var(--font-family-2);
     display: inline-block;
-    color: #fff;
+    color: var(--docs-font-color);
     width: 100%;
     height: 30px;
     background: transparent;
@@ -322,7 +328,7 @@ select[multiple=multiple]:focus {
     bottom: 0;
     left: 0;
     font-size: 15px;
-    border-right: 3px double var(--border-color);
+    border-right: 1px solid var(--border-color);
 }
 
 #sidebar a {
@@ -521,8 +527,9 @@ select[multiple=multiple]:focus {
 
 #body {
     position: relative;
-    margin-left: 300px;
+    margin-left: 301px;
     min-height: 100%;
+    border-left: 1px solid var(--border-color);
 }
 
 #body img,

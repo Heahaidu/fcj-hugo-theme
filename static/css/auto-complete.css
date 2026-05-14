@@ -1,9 +1,9 @@
 .autocomplete-suggestions {
     text-align: left;
     cursor: default;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-top: 0;
-    background: #fff;
+    background: var(--background-color);
     box-shadow: -1px 1px 3px rgba(0,0,0,.1);
 
     /* core styles should not be changed */
@@ -24,7 +24,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #333;
+    color: var(--docs-font-color);
 }
 
 .autocomplete-suggestion b {
@@ -33,13 +33,13 @@
 }
 
 .autocomplete-suggestion.selected {
-    background: #333;
-    color: #fff;
+    background: var(--auto-complete-selection-bg);
+    color: var(--auto-complete-color);
 }
 
 .autocomplete-suggestion:hover {
-    background: #444;
-    color: #fff;
+    background: var(--auto-complete-hover-bg);
+    color: var(--auto-complete-color);
 }
 
 .autocomplete-suggestion > .context {
