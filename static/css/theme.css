@@ -529,7 +529,6 @@ select[multiple=multiple]:focus {
     position: relative;
     margin-left: 301px;
     min-height: 100%;
-    border-left: 1px solid var(--border-color);
 }
 
 #body img,
