@@ -528,8 +528,13 @@ select[multiple=multiple]:focus {
 
 #body {
     position: relative;
+<<<<<<< HEAD
     margin-left: 300px;
     height: 100% !important;
+=======
+    margin-left: 301px;
+    min-height: 100%;
+>>>>>>> fdcfa17fce7b2c7e5fe497827d980a013ca01ac1
 }
 
 #body img,
