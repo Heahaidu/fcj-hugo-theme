@@ -40,25 +40,25 @@ disableDefaultLanguageRedirect = false
 
 [languages]
   [languages.vi]
-  title = "Workshop"
+  title = "Documents"
   weight = 0
   languageName = "Tiếng Việt"
   contentDir = "content/vi" 
 
   [[languages.vi.menu.shortcuts]]
-  name = "<i class='fab fa-facebook'></i> AWS Study Group"
-  identifier = "AWS Study Group FB"
-  url = "https://www.facebook.com/groups/awsstudygroupfcj/"
+  name = "<i class='fab fa-facebook'></i> Github"
+  identifier = "Github"
+  url = "https://www.github.com/heahaidu"
   weight = 20
 
   [languages.en]
-  title = "Workshop"
+  title = "Documents"
   weight = 0
   languageName = "English"
   contentDir = "content/en" 
 
-  [[languages.en.menu.shortcuts]]
-  name = "<i class='fab fa-facebook'></i> AWS Study Group"
-  identifier = "AWS Study Group FB"
-  url = "https://www.facebook.com/groups/awsstudygroupfcj/"
+  [[languages.vi.menu.shortcuts]]
+  name = "<i class='fab fa-facebook'></i> Github"
+  identifier = "Github"
+  url = "https://www.github.com/heahaidu"
   weight = 20

@@ -1,5 +1,5 @@
 ---
-title : "Báo cáo thực tập"
+title : "Giới thiệu"
 weight : 1 
 chapter : false
 ---

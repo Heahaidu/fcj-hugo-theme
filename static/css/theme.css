@@ -2,6 +2,7 @@
 
 /* Tags */
 @import "tags.css";
+@import url(fonts.css);
 
 @font-face {
     font-display: swap;
@@ -232,7 +233,7 @@ select[multiple=multiple]:focus {
     color: #fff;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 #header #logo-svg path {
@@ -328,7 +329,7 @@ select[multiple=multiple]:focus {
     bottom: 0;
     left: 0;
     font-size: 15px;
-    border-right: 1px solid var(--border-color);
+    border-right: double var(--border-color);
 }
 
 #sidebar a {
@@ -527,9 +528,8 @@ select[multiple=multiple]:focus {
 
 #body {
     position: relative;
-    margin-left: 301px;
-    min-height: 100%;
-    border-left: 1px solid var(--border-color);
+    margin-left: 300px;
+    height: 100% !important;
 }
 
 #body img,
@@ -1543,4 +1543,12 @@ option {
 #sidebar .ps__rail-y:hover > .ps__thumb-y {
     width: 6px !important; 
     background-color: #888;
+}
+
+.heading-logo {
+    font-family: 'Press Start 2P', cursive !important;
+}
+
+.heading-logo span {
+    color: rgb(255, 177, 238);
 }
